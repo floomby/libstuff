@@ -110,6 +110,11 @@ void optparse(int argc, char *argv[], char *fmt, ...)
 		else
 			final[idx].manatory = 0;
 
+		if(idx >= (argc - 1)/2)
+		{
+			call_usage();
+			exit(EXIT_FAILURE);
+		}
 		final[idx].data = va_arg(args, void *);
 		//TODO use a pool for this
 		final[idx].optstr = malloc(toks[idx*2].length + 3);		//two for spaces, two for dashes, and one for null
