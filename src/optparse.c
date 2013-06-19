@@ -67,8 +67,6 @@ void parse(int argc, char *argv[], struct final_t *final, int count);
 
 void optparse(int argc, char *argv[], char *fmt, ...)
 {
-	auto_free_init();
-
 	va_list args;
 	va_start(args, fmt);
 

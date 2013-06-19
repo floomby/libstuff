@@ -13,23 +13,13 @@ struct free_list {
 static struct free_list *auto_free_list;
 
 void free_everything(void);
-
-void auto_free_init()
-{
-	auto_free_list = malloc(sizeof(struct free_list));
-	if(!auto_free_list){
-		perror("malloc");
-		exit(ENOMEM);
-	}
-
-	auto_free_list->count = 0;
-	auto_free_list->list = NULL;
-
-	atexit(free_everything);
-}
+void init();
 
 void auto_free_add(void *x)
 {
+	if(!auto_free_list)
+		init();
+
 	struct free_node *node = malloc(sizeof(struct free_node));
 	if(!node){
 		perror("malloc");
@@ -45,6 +35,20 @@ void auto_free_add(void *x)
 int auto_free_count()
 {
 	return auto_free_list->count;
+}
+
+void init()
+{
+	auto_free_list = malloc(sizeof(struct free_list));
+	if(!auto_free_list){
+		perror("malloc");
+		exit(ENOMEM);
+	}
+
+	auto_free_list->count = 0;
+	auto_free_list->list = NULL;
+
+	atexit(free_everything);
 }
 
 void recursive_free(struct free_node *node)

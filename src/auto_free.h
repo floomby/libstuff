@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <errno.h>
 
-void auto_free_init();
 void auto_free_add(void *x);
 int auto_free_count();
 

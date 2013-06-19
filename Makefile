@@ -17,4 +17,5 @@ test: libstuff tools/tester.c
 	$(CC) tools/tester.c -o tester -L ./ -lstuff $(CFLAGS)
 
 clean:
-	rm $(OBJS)
+	-rm $(OBJS)
+	-rm libstuff.a
