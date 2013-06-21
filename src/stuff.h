@@ -7,6 +7,7 @@ extern "C" {
 
 #include "auto_free.h"
 #include "optparse.h"
+#include "cvector.h"
 
 #ifdef __cplusplus
 }

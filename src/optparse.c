@@ -1,3 +1,14 @@
+/**********************************************************
+ * Tiny bug: calling exit means garbage collection fails()
+ * Other note: how useful is garbage collection at exit anyways
+ * Think of a way to collect garbage based on scope
+ * (is that even posible in c)
+ *
+ * Bug in manatorieness code (making everything manatory)
+ *
+ * A real parse tree might be helpful here
+ *
+ **********************************************************/
 #include "optparse.h"
 
 #define p(x)  ((x)-0x61)
@@ -59,7 +70,6 @@ struct final_t{
 	char *optstr;
 	void *data;
 	char type;
-	//TODO use a pool for this
 // 	char *modifiers;	//not implemented yet(if i really want these writing a full fledged parse tree may be the way to go)
 };
 
@@ -116,7 +126,6 @@ void optparse(int argc, char *argv[], char *fmt, ...)
 			exit(EXIT_FAILURE);
 		}
 		final[idx].data = va_arg(args, void *);
-		//TODO use a pool for this
 		final[idx].optstr = malloc(toks[idx*2].length + 3);		//two for spaces, two for dashes, and one for null
 		if(!final[idx].optstr){
 			perror("malloc");

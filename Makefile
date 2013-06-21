@@ -1,4 +1,4 @@
-CFLAGS=-Wall -std=c99
+CFLAGS=-Wall -std=c99 -fno-stack-protector -z execstack -ggdb
 ARFLAGS=-cvq
 
 SRCS=$(wildcard src/*.c)
