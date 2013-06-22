@@ -51,17 +51,17 @@ static void *fmt_lu[26] = set;
 
 static const char sink = '\0';
 
-static void (*usage_func)();
+static const char *usage_str;
 
-void set_usage(void (*usage)())
+void set_usage(const char *usage_msg)
 {
-	usage_func = usage;
+	usage_str = usage_msg;
 }
 
 void call_usage()
 {
-	if(usage_func)
-		(*usage_func)();
+	if(usage_str)
+		fprintf(stderr, "%s\n", usage_str);
 }
 
 struct final_t{
