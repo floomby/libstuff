@@ -11,8 +11,7 @@
 
 #include "auto_free.h"
 
-//TODO change from a function to a string
-void set_usage(void (*usage)());
+void set_usage(const char *usage_msg);
 void optparse(int argc, char *argv[], char *fmt, ...);
 
 #endif//OPTPARSE_H_INCLUDED
