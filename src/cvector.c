@@ -1,3 +1,21 @@
+/********************************************************
+ * There is a bug in the make_tramp function
+ * to function screws up the stack a little
+ * the return anddress and the first parameters
+ * on the stack are correct, but it only copies
+ * 4 bytes of the last parameter to the stack,
+ * Then the push/pop functions segfault when the
+ * last parameter is dereferanced(remeber that this
+ * is the first paramter of the c function since c 
+ * reverses the order of the parameters on the 
+ * stack)
+ * 
+ * To fix this the assembly in the code.asm needs
+ * to be fixed and the new assembly moved into the
+ * make_tramp function.
+ * 
+ ********************************************************/
+
 #include "cvector.h"
 
 //if this is the best value then it should not be defined like this
@@ -59,6 +77,13 @@ cvector_t cvector_intern(size_t size)
 //make the trampoline push the env* onto the stack
 void make_tramp(struct env *vec, void *func, void **member)
 {
+	//TODO the bug is in this function, half of the assembly properly
+	//assumes that this is 64 bit but the pointers are not copied
+	//to the stack properly
+	
+	//TODO since the code is only for amd64 then the complier
+	//should throw an error on compilation on none amd64 machines
+	
 	//this is only the x86_64 code
 	char *tramp = malloc(19);
 	if(!tramp){
