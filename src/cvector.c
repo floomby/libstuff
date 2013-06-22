@@ -81,9 +81,6 @@ void make_tramp(struct env *vec, void *func, void **member)
 	//assumes that this is 64 bit but the pointers are not copied
 	//to the stack properly
 	
-	//TODO since the code is only for amd64 then the complier
-	//should throw an error on compilation on none amd64 machines
-	
 	//this is only the x86_64 code
 	char *tramp = malloc(19);
 	if(!tramp){
