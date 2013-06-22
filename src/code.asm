@@ -3,6 +3,11 @@
 
 [BITS 64]
 
+; the constants may seem a bit weird, they are 
+; just for seeing there location in the ouput
+; the real function replacece the consts with
+; the address that should be there
+
 tramp:
 	push QWORD [rsp]
 	mov QWORD [rsp+8], 12345678h
