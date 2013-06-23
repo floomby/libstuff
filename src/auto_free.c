@@ -1,3 +1,23 @@
+/*******************************************************
+ * I have an idae make the garbage collection transparent
+ * and scope based(to a large degree). The idea is to 
+ * write a wrapper to malloc and then have the wrapper
+ * modify return address of the stack frame beneath the
+ * wrapper function. The new return address would point
+ * to a garbage collection function. This garbage
+ * collection function would then decide wheater or
+ * not the memory that was allocated had left scope.
+ * This task is not as easy as it would appear. If the 
+ * function that is in question returns the memory
+ * address directly or indirectly eg. member of a struct,
+ * or appends it to a linked list, etc. then figuring
+ * out scoping may still prove to be impossible.
+ * 
+ * Still this method has potential and if it can be fully
+ * implemented then it could make memory managment easier.
+ * 
+ *******************************************************/
+
 #include "auto_free.h"
 
 struct free_node {
